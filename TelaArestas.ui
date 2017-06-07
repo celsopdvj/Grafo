@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TelaMatriz</class>
- <widget class="QDialog" name="TelaMatriz">
+ <class>TelaArestas</class>
+ <widget class="QDialog" name="TelaArestas">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
-    <height>294</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Matriz de Adjacências</string>
+   <string>Arestas</string>
   </property>
   <property name="windowIcon">
    <iconset resource="arquivos.qrc">
@@ -19,10 +19,9 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QTextEdit" name="textEditMatriz">
+    <widget class="QTextEdit" name="textEditArestas">
      <property name="font">
       <font>
-       <family>Calisto MT</family>
        <pointsize>12</pointsize>
       </font>
      </property>

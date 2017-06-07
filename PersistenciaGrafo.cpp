@@ -70,18 +70,12 @@ Grafo *PersistenciaGrafo::carregarGrafo(QString nomeDoArquivo)
                 matriz[i][j] = matrizString[j].toInt();
 
                 // caso o elemento seja 1, atribui a adjacencia
-                if(matriz[i][j]==1)
+                if(matriz[i][j])
                 {
                     Vertice *origem = saida->getVerticePorPosicao(i);
                     Vertice *destino= saida->getVerticePorPosicao(j);
-                    saida->incluirAresta(origem,destino);
+                    saida->incluirAresta(origem,destino,matriz[i][j]);
                     origem->inserirAdjacente(destino);
-                }
-
-                // caso tenha um numero diferente de 1 ou 0, lanca ecxessao
-                else if(matriz[i][j]!=0)
-                {
-                    throw QString("Matriz com adjacencia nao permitida");
                 }
             }
         }

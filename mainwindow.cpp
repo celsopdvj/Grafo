@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // esconde o header da tabela de status
     ui->tableWidgetStatus->horizontalHeader()->hide();
+
+    // conecta a validacao do peso
+    connect(ui->lineEditPeso,SIGNAL(textChanged(QString)),this,SLOT(validaPeso(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -99,27 +102,15 @@ void MainWindow::listarVertices()
     ED2::Vertice **lista = grafo->getListaVertices();
     ui->comboBoxPartida->clear();
     ui->comboBoxDestino->clear();
+    QString saida;
     for(int i=0;i<grafo->getVerticesOcupados();i++)
     {
+        saida+=lista[i]->getDescricao()+"| <font color='red'>"
+             +lista[i]->getAdjacentes()+" </font><br>";
         ui->comboBoxPartida->addItem(lista[i]->getDescricao());
         ui->comboBoxDestino->addItem(lista[i]->getDescricao());
     }
-}
-
-void MainWindow::listarArestas()
-{
-    try{
-        std::vector<ED2::Aresta*> *arestas = grafo->getArestas();
-        ui->textEditArestas->clear();
-        QString saida="";
-        for(std::vector<ED2::Aresta*>::iterator i = arestas->begin(); i!=arestas->end(); i++) {
-            ED2::Aresta *aux  = *i;
-            saida += "<p>"+aux->getOrigem()->getDescricao() + " ---> "+aux->getDestino()->getDescricao()+"</p>\n";
-        }
-        ui->textEditArestas->setText(saida);
-    }catch(QString &erro){
-        throw erro;
-    }
+    ui->textEditVertices->setText(saida);
 }
 
 void MainWindow::statusGrafo()
@@ -144,6 +135,18 @@ void MainWindow::limparStatus()
         if(ui->tableWidgetStatus->item(i,0)) delete ui->tableWidgetStatus->item(i,0);
 }
 
+void MainWindow::validaPeso(QString peso)
+{
+    if(!peso.length()) peso = "0";
+    else if(peso.length()>1)
+    {
+        if(peso.startsWith("0")) {
+            peso.remove(0,1);
+        }
+    }
+    ui->lineEditPeso->setText(peso);
+}
+
 void MainWindow::habilitarBotoes(bool habilita)
 {
     ui->lineEditAdjA->setEnabled(habilita);
@@ -158,7 +161,7 @@ void MainWindow::habilitarBotoes(bool habilita)
     ui->pushButtonBfs->setEnabled(habilita);
     ui->comboBoxPartida->setEnabled(habilita);
     ui->comboBoxDestino->setEnabled(habilita);
-    ui->textEditArestas->setEnabled(habilita);
+    ui->textEditVertices->setEnabled(habilita);
 }
 
 void MainWindow::on_pushButtonAdjancente_clicked()
@@ -166,6 +169,9 @@ void MainWindow::on_pushButtonAdjancente_clicked()
     try{
         ED2::Vertice *verticeA = grafo->getVertice(ui->lineEditAdjA->text());
         ED2::Vertice *verticeB = grafo->getVertice(ui->lineEditAdjB->text());
+        int peso = ui->lineEditPeso->text().toInt();
+
+        if(!peso) throw QString("Informe um peso para a aresta");
 
         /*          METODO PARA INSERIR ARESTA E ADJACENCIA
          *          -> CHECKBOX MARCADA - ARESTA DIRECIONADA:
@@ -192,8 +198,8 @@ void MainWindow::on_pushButtonAdjancente_clicked()
             if(!grafo->existeAresta(verticeB,verticeA))
             {
                 verticeB->inserirAdjacente(verticeA);
-                grafo->incluirAdjacencia(verticeB,verticeA);
-                grafo->incluirAresta(verticeB,verticeA);
+                grafo->incluirAdjacencia(verticeB,verticeA,peso);
+                grafo->incluirAresta(verticeB,verticeA,peso);
             }
         }
 
@@ -201,8 +207,8 @@ void MainWindow::on_pushButtonAdjancente_clicked()
         if(!grafo->existeAresta(verticeA,verticeB))
         {
             verticeA->inserirAdjacente(verticeB);
-            grafo->incluirAdjacencia(verticeA,verticeB);
-            grafo->incluirAresta(verticeA,verticeB);
+            grafo->incluirAdjacencia(verticeA,verticeB,peso);
+            grafo->incluirAresta(verticeA,verticeB,peso);
         }
         else
         {
@@ -214,11 +220,11 @@ void MainWindow::on_pushButtonAdjancente_clicked()
         }
 
         listarVertices();
-        listarArestas();
         statusGrafo();
 
         ui->lineEditAdjA->clear();
         ui->lineEditAdjB->clear();
+        ui->lineEditPeso->setText("0");
 
     }catch(QString &erro){
         QMessageBox::critical(this,"Erro",erro);
@@ -234,7 +240,6 @@ void MainWindow::on_pushButtonRemoverAdj_clicked()
         grafo->excluirAdjacencia(verticeA,verticeB);
         grafo->removerAresta(verticeA,verticeB);
         listarVertices();
-        listarArestas();
         statusGrafo();
     }catch(QString &erro){
         QMessageBox::critical(this,"Erro",erro);
@@ -264,7 +269,6 @@ void MainWindow::on_pushButtonCarregar_clicked()
         if(grafo) delete grafo;
         grafo = aux;
         habilitarBotoes(true);
-        listarArestas();
         listarVertices();
         statusGrafo();
         ui->lineEditArquivo->setText(endereco);
@@ -307,16 +311,24 @@ void MainWindow::on_pushButtonHelp_clicked()
 
 void MainWindow::on_pushButtonLista_clicked()
 {
-    TelaLista listagem;
-    listagem.setModal(true);
-    listagem.listar(grafo);
-    listagem.exec();
+    try{
+        TelaArestas listagem;
+        listagem.setModal(true);
+        listagem.listarArestas(grafo);
+        listagem.exec();
+    }catch(QString &erro){
+        QMessageBox::critical(this,"Erro",erro);
+    }
 }
 
 void MainWindow::on_pushButtonMatriz_clicked()
 {
-    TelaMatriz listagem;
-    listagem.setModal(true);
-    listagem.listarMatriz(grafo);
-    listagem.exec();
+    try{
+        TelaMatriz listagem;
+        listagem.setModal(true);
+        listagem.listarMatriz(grafo);
+        listagem.exec();
+    }catch(QString &erro){
+        QMessageBox::critical(this,"Erro",erro);
+    }
 }

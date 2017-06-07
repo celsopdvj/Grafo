@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Grafos</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="arquivos.qrc">
+    <normaloff>:/icones/favicon.ico</normaloff>:/icones/favicon.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
@@ -27,15 +31,15 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_2">
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>245</x>
         <y>20</y>
-        <width>350</width>
+        <width>360</width>
         <height>61</height>
        </rect>
       </property>
@@ -512,7 +516,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Arestas:</string>
+          <string>Lista de Adjacências</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -520,7 +524,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEditArestas">
+        <widget class="QTextEdit" name="textEditVertices">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -528,8 +537,8 @@
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -560,7 +569,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>37</x>
         <y>153</y>
-        <width>61</width>
+        <width>65</width>
         <height>20</height>
        </rect>
       </property>
@@ -584,7 +593,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>37</x>
         <y>193</y>
-        <width>61</width>
+        <width>65</width>
         <height>20</height>
        </rect>
       </property>
@@ -607,7 +616,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>150</y>
+        <y>166</y>
         <width>132</width>
         <height>26</height>
        </rect>
@@ -627,7 +636,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>190</y>
+        <y>207</y>
         <width>132</width>
         <height>26</height>
        </rect>
@@ -643,8 +652,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QCheckBox" name="checkBoxDirecionada">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>220</y>
+        <x>46</x>
+        <y>257</y>
         <width>150</width>
         <height>20</height>
        </rect>
@@ -691,7 +700,7 @@ p, li { white-space: pre-wrap; }
         <x>30</x>
         <y>130</y>
         <width>3</width>
-        <height>120</height>
+        <height>150</height>
        </rect>
       </property>
       <property name="orientation">
@@ -701,10 +710,10 @@ p, li { white-space: pre-wrap; }
      <widget class="Line" name="line_2">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>130</y>
+        <x>409</x>
+        <y>129</y>
         <width>3</width>
-        <height>120</height>
+        <height>153</height>
        </rect>
       </property>
       <property name="orientation">
@@ -715,7 +724,7 @@ p, li { white-space: pre-wrap; }
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>250</y>
+        <y>280</y>
         <width>380</width>
         <height>3</height>
        </rect>
@@ -827,7 +836,7 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -840,7 +849,11 @@ p, li { white-space: pre-wrap; }
        <item>
         <widget class="QPushButton" name="pushButtonLista">
          <property name="text">
-          <string>Ver Lista de Adjacências</string>
+          <string>Ver Lista de Arestas</string>
+         </property>
+         <property name="icon">
+          <iconset resource="arquivos.qrc">
+           <normaloff>:/icones/ico_list.ico</normaloff>:/icones/ico_list.ico</iconset>
          </property>
         </widget>
        </item>
@@ -849,18 +862,53 @@ p, li { white-space: pre-wrap; }
          <property name="text">
           <string>Ver Matriz de Adjacências</string>
          </property>
+         <property name="icon">
+          <iconset resource="arquivos.qrc">
+           <normaloff>:/icones/ico_matriz.png</normaloff>:/icones/ico_matriz.png</iconset>
+         </property>
         </widget>
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>35</x>
+        <y>230</y>
+        <width>66</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Peso:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditPeso">
+      <property name="geometry">
+       <rect>
+        <x>158</x>
+        <y>223</y>
+        <width>102</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <zorder>layoutWidget</zorder>
      <zorder>layoutWidget</zorder>
      <zorder>layoutWidget</zorder>
      <zorder>label_4</zorder>
      <zorder>lineEditDescricao</zorder>
      <zorder>pushButtonInserir</zorder>
      <zorder>label</zorder>
-     <zorder>pushButtonLista</zorder>
-     <zorder>pushButtonMatriz</zorder>
      <zorder>lineEditAdjA</zorder>
      <zorder>lineEditAdjB</zorder>
      <zorder>label_5</zorder>
@@ -875,6 +923,8 @@ p, li { white-space: pre-wrap; }
      <zorder>line_4</zorder>
      <zorder>line_5</zorder>
      <zorder>line_6</zorder>
+     <zorder>label_17</zorder>
+     <zorder>lineEditPeso</zorder>
     </widget>
     <widget class="QWidget" name="page_3">
      <widget class="QLabel" name="label_2">
@@ -936,9 +986,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QComboBox" name="comboBoxPartida">
       <property name="geometry">
        <rect>
-        <x>358</x>
+        <x>340</x>
         <y>127</y>
-        <width>110</width>
+        <width>130</width>
         <height>24</height>
        </rect>
       </property>
@@ -946,9 +996,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QComboBox" name="comboBoxDestino">
       <property name="geometry">
        <rect>
-        <x>358</x>
+        <x>340</x>
         <y>156</y>
-        <width>110</width>
+        <width>130</width>
         <height>24</height>
        </rect>
       </property>
@@ -1228,7 +1278,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButtonCarregar</tabstop>
   <tabstop>pushButtonSalvar</tabstop>
   <tabstop>pushButtonHelp</tabstop>
-  <tabstop>textEditArestas</tabstop>
+  <tabstop>textEditVertices</tabstop>
   <tabstop>lineEditArquivo</tabstop>
   <tabstop>lineEditDescricao</tabstop>
   <tabstop>pushButtonInserir</tabstop>

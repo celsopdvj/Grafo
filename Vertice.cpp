@@ -93,9 +93,7 @@ QString Vertice::getAdjacentes()
     QString saida = "";
     for(std::list<Vertice*>::iterator i=listaAdjacencia.begin(); i!=listaAdjacencia.end(); i++) {
         const Vertice *aux = *i;
-        if(i!=listaAdjacencia.begin())
-            saida += " | ";
-        saida += aux->descricao;
+        saida += " |"+aux->descricao+"| =>";
     }
     return saida;
 }

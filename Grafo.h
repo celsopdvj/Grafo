@@ -50,16 +50,17 @@ public:
 
     //============================== OPERACOES RELACIONADAS A ARESTAS ====================
 
-    void incluirAresta(Vertice *a,Vertice *b);                      // Inclui uma aresta com origem A e destino B caso nao exista
+    void incluirAresta(Vertice *a, Vertice *b);                     // Inclui uma aresta com origem A e destino B caso nao exista
+    void incluirAresta(Vertice *a, Vertice *b, int peso);           // Inclui uma aresta com origem A e destino B caso nao exista
     void removerAresta(Vertice *a,Vertice *b);                      // Remove uma aresta com origem A e destino B caso exista
     std::vector<Aresta*> *getArestas() const;                       // Retorna a vector de arestas
     bool existeAresta(Vertice *a,Vertice *b) const;                 // Verifica se existe uma aretsa com origem a e destino b
-    bool getQuantidadeArestas() const;
+    int getQuantidadeArestas() const;                               // Retorna a quantidade de arestas
 
     //============================== OPERACOES RELACIONADAS A MATRIZ DE AJDACENCIA ========
 
-    void incluirAdjacencia(Vertice *a,Vertice *b) const;            // Coloca o numero 1 na posicao que representa os vertices na matriz
-    void excluirAdjacencia(Vertice *a,Vertice *b);                  // Coloca o numero 0 na posicao que representa os vertices na matriz
+    void incluirAdjacencia(Vertice *a, Vertice *b, int peso) const; // Coloca o peso na posicao que representa os vertices na matriz
+    void excluirAdjacencia(Vertice *a,Vertice *b);                  // Coloca o peso 0 na posicao que representa os vertices na matriz
     int **getMatrizAdjacencia() const;                              // retorna a matriz
     void setMatrizAdjacencia(int **value);                          // Atribui uma nova matriz
 

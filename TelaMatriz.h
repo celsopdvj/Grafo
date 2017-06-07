@@ -5,6 +5,13 @@
 #include <QTableWidgetItem>
 #include "Grafo.h"
 
+
+
+/*
+ * CLASSE RESPONSAVEL POR IMPRIMIR UMA TELA DE LISTAGEM DA
+ * MATRIZ DE ADJACENCIAS E SEUS PESOS
+*/
+
 namespace Ui {
 class TelaMatriz;
 }

@@ -21,8 +21,8 @@ SOURCES += main.cpp\
     Aresta.cpp \
     PersistenciaGrafo.cpp \
     TelaAjuda.cpp \
-    TelaLista.cpp \
-    TelaMatriz.cpp
+    TelaMatriz.cpp \
+    TelaArestas.cpp
 
 HEADERS  += mainwindow.h \
     Vertice.h \
@@ -30,13 +30,13 @@ HEADERS  += mainwindow.h \
     Aresta.h \
     PersistenciaGrafo.h \
     TelaAjuda.h \
-    TelaLista.h \
-    TelaMatriz.h
+    TelaMatriz.h \
+    TelaArestas.h
 
 FORMS    += mainwindow.ui \
     TelaAjuda.ui \
-    TelaLista.ui \
-    TelaMatriz.ui
+    TelaMatriz.ui \
+    TelaArestas.ui
 
 RESOURCES += \
     arquivos.qrc

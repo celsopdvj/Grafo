@@ -6,5 +6,8 @@
         <file>ico_help.png</file>
         <file>ico_open.png</file>
         <file>ico_save.png</file>
+        <file>favicon.ico</file>
+        <file>ico_list.ico</file>
+        <file>ico_matriz.png</file>
     </qresource>
 </RCC>

@@ -31,12 +31,12 @@ bool Grafo::existeAresta(Vertice *a, Vertice *b) const
     }
 }
 
-bool Grafo::getQuantidadeArestas() const
+int Grafo::getQuantidadeArestas() const
 {
     return arestas->size();
 }
 
-void Grafo::incluirAdjacencia(Vertice *a, Vertice *b) const
+void Grafo::incluirAdjacencia(Vertice *a, Vertice *b, int peso) const
 {
     // obtem a posicao de cada um dos vertices na matriz
     int linha = getPosicaoVertice(a);
@@ -44,7 +44,8 @@ void Grafo::incluirAdjacencia(Vertice *a, Vertice *b) const
 
     // atribui a adjacencia caso nao exista
     if(matrizAdjacencia[linha][coluna]) throw QString("Adjacencia ja existe");
-    matrizAdjacencia[linha][coluna] = 1;
+
+    matrizAdjacencia[linha][coluna] = peso;
 }
 
 void Grafo::excluirAdjacencia(Vertice *a, Vertice *b)
@@ -193,6 +194,24 @@ void Grafo::incluirAresta(Vertice *a, Vertice *b)
     try{
 
         Aresta *nova = new Aresta(a,b);
+
+        if(existeAresta(a,b)) throw QString("Aresta ja existe");
+
+        arestas->push_back(nova);
+
+    }catch(std::bad_alloc&){
+        throw QString("Maquina sem memoria");
+    }catch(QString &erro){
+        throw erro;
+    }
+}
+
+void Grafo::incluirAresta(Vertice *a, Vertice *b, int peso)
+{
+    if(!a || !b) throw QString("Parametro vazio");
+    try{
+
+        Aresta *nova = new Aresta(a,b,peso);
 
         if(existeAresta(a,b)) throw QString("Aresta ja existe");
 

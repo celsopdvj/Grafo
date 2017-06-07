@@ -15,6 +15,7 @@ TelaMatriz::~TelaMatriz()
 
 void TelaMatriz::listarMatriz(ED2::Grafo *grafo)
 {
+    if(!grafo) throw QString("Grafo vazio");
     QString str_matriz="",header="\t";
     int **matriz = grafo->getMatrizAdjacencia();
     ui->textEditMatriz->clear();
